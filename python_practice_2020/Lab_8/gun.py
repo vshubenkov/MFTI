@@ -63,7 +63,6 @@ class Ball():
 
     def move(self):
         """Переместить мяч по прошествии единицы времени.
-
         Метод описывает перемещение мяча за один кадр перерисовки. То есть, обновляет значения
         self.x и self.y с учетом скоростей self.vx и self.vy, силы гравитации, действующей на мяч,
         и стен по краям окна (размер окна 800х600).
@@ -83,7 +82,6 @@ class Ball():
     def hittest(self, obj):
         pass
         """Функция проверяет сталкивалкивается ли данный обьект с целью, описываемой в обьекте obj.
-
         Args:
             obj: Обьект, с которым проверяется столкновение.
         Returns:
@@ -107,7 +105,6 @@ class Gun():
 
     def fire2_end(self, event):
         """Выстрел мячом.
-
         Происходит при отпускании кнопки мыши.
         Начальные значения компонент скорости мяча vx и vy зависят от положения мыши.
         """
@@ -181,10 +178,7 @@ balls = []
 
 def move_object(ball):
     global balls, t1
-
-
     #dy = math.fabs(ball.speed * math.sin(ball.an))/5
-
     #Ball direction right and angle > 0
 
     if ball.speed >= 10:
@@ -193,7 +187,7 @@ def move_object(ball):
                 ball.an = -ball.an
             if ball.an < 0 and ball.direction == 'left':
                 ball.an = -ball.an
-            ball.speed = ball.speed/1.5
+            ball.speed = ball.speed/1.3
             ball.delta_x = ball.x
             ball.delta_y = ball.y
             ball.marker_wall = False
@@ -224,16 +218,18 @@ def move_object(ball):
         if ball.direction == 'right' and ball.an > 0:
             dx = ball.speed * math.cos(ball.an)/5
             ball.x_coord += dx
-            ball.y_coord = (ball.x_coord - ball.delta_x) * math.tan(ball.an) - \
-                           (9.8 * (ball.x_coord - ball.delta_x)**2)/(2 * (ball.speed)**2 * math.cos(ball.an)**2) + ball.delta_y
+            ball.y_coord = (ball.x_coord - ball.delta_x) * math.tan(ball.an) + \
+                           (9.8 * (ball.x_coord - ball.delta_x)**2)/(2 * (ball.speed)**2 * \
+                            math.cos(ball.an)**2) + ball.delta_y
             if ball.y <= 550 or ball.y_coord >= 550:
                 ball.marker_wall = True
 
         if ball.direction == 'right' and ball.an < 0:
             dx = ball.speed * math.cos(ball.an)/5
             ball.x_coord += dx
-            ball.y_coord = (ball.x_coord - ball.delta_x) * math.tan(ball.an) - \
-                           (9.8 * (ball.x_coord - ball.delta_x)**2)/(2 * (ball.speed)**2 * math.cos(ball.an)**2) + ball.delta_y
+            ball.y_coord = (ball.x_coord - ball.delta_x) * math.tan(ball.an) + \
+                           (9.8 * (ball.x_coord - ball.delta_x)**2)/(2 * (ball.speed)**2 * \
+                            math.cos(ball.an)**2) + ball.delta_y
             if ball.y <= 550 or ball.y_coord >= 550:
                 ball.marker_wall = True
 
